@@ -20,3 +20,6 @@ INSERT INTO offer(edition, start_moment, end_moment, id_course) VALUES ('First E
 INSERT INTO offer(edition, start_moment, end_moment, id_course) VALUES ('Second Edition', TIMESTAMP WITH TIME ZONE '2023-11-15T12:00:00-03:00', TIMESTAMP WITH TIME ZONE '2024-05-15T12:00:00-03:00', 1);
 
 INSERT INTO resource(title, description, position, img_uri, type, external_link, id_offer) VALUES ('Aulas', 'Aulas do módulo 1', 1, '', 0, null, 2);
+
+INSERT INTO section(title, description, position, img_uri, id_resource, id_prerequisite) VALUES ('Cap 1', 'Introduction', 1, 'img.jpeg', 1, null);
+INSERT INTO section(title, description, position, img_uri, id_resource, id_prerequisite) VALUES ('Cap 2', 'Exercícios', 2, 'img.jpeg', 1, 1);

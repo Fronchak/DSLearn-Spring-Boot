@@ -1,8 +1,5 @@
 package com.fronchak.DSLearn.entities;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -12,17 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fronchak.DSLearn.entities.enums.ResourceType;
-
 @Entity
-@Table(name = "resource")
-public class Resource implements Serializable {
+@Table(name = "section")
+public class Section {
 
-	private static final long serialVersionUID = 1L;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -31,19 +24,15 @@ public class Resource implements Serializable {
 	private Integer position;
 	
 	@Column(name = "img_uri")
-	private String imgUri;
-	
-	private ResourceType type;
-	
-	@Column(name = "external_link")
-	private String externalLink;
+	private	String imgUri;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_offer")
-	private Offer offer;
+	@JoinColumn(name = "id_resource")
+	private Resource resource;
 	
-	@OneToMany(mappedBy = "resource")
-	private List<Section> sections = new ArrayList<>();
+	@OneToOne
+	@JoinColumn(name = "id_prerequisite")
+	private Section prerequisite;
 
 	public Long getId() {
 		return id;
@@ -85,36 +74,20 @@ public class Resource implements Serializable {
 		this.imgUri = imgUri;
 	}
 
-	public ResourceType getType() {
-		return type;
+	public Resource getResource() {
+		return resource;
 	}
 
-	public void setType(ResourceType type) {
-		this.type = type;
+	public void setResource(Resource resource) {
+		this.resource = resource;
 	}
 
-	public String getExternalLink() {
-		return externalLink;
+	public Section getPrerequisite() {
+		return prerequisite;
 	}
 
-	public void setExternalLink(String externalLink) {
-		this.externalLink = externalLink;
-	}
-
-	public Offer getOffer() {
-		return offer;
-	}
-
-	public void setOffer(Offer offer) {
-		this.offer = offer;
-	}
-	
-	public List<Section> getSections() {
-		return sections;
-	}
-	
-	public void addSection(Section section) {
-		sections.add(section);
+	public void setPrerequisite(Section prerequisite) {
+		this.prerequisite = prerequisite;
 	}
 
 	@Override
@@ -130,7 +103,7 @@ public class Resource implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Resource other = (Resource) obj;
+		Section other = (Section) obj;
 		return Objects.equals(id, other.id);
 	}
 }
