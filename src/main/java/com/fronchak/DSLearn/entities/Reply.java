@@ -2,10 +2,7 @@ package com.fronchak.DSLearn.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -17,20 +14,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "topic")
-public class Topic implements Serializable {
+@Table(name = "reply")
+public class Reply implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String title;
 	
 	@Column(columnDefinition = "TEXT")
 	private String body;
@@ -39,44 +33,25 @@ public class Topic implements Serializable {
 	private Instant moment;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_lesson")
-	private Lesson lesson;
+	@JoinColumn(name = "id_topic")
+	private Topic topic;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_author")
 	private User author;
 	
 	@ManyToMany
-	@JoinTable(name = "user_topic_likes",
-			joinColumns = @JoinColumn(name = "id_topic"),
+	@JoinTable(name = "user_reply_likes",
+			joinColumns = @JoinColumn(name = "id_reply"),
 			inverseJoinColumns = @JoinColumn(name = "id_user"))
 	private Set<User> likes = new HashSet<>();
-	
-	@ManyToOne
-	@JoinColumn(name = "id_offer")
-	private Offer offer;
-	
-	@OneToMany(mappedBy = "topic")
-	private List<Reply> replies = new ArrayList<>();
 
-	@OneToOne
-	@JoinColumn(name = "id_answer")
-	private Reply answer;
-	
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 
 	public String getBody() {
@@ -95,12 +70,12 @@ public class Topic implements Serializable {
 		this.moment = moment;
 	}
 
-	public Lesson getLesson() {
-		return lesson;
+	public Topic getTopic() {
+		return topic;
 	}
 
-	public void setLesson(Lesson lesson) {
-		this.lesson = lesson;
+	public void setTopic(Topic topic) {
+		this.topic = topic;
 	}
 
 	public User getAuthor() {
@@ -114,49 +89,8 @@ public class Topic implements Serializable {
 	public Set<User> getLikes() {
 		return likes;
 	}
-
+	
 	public void addLike(User user) {
 		likes.add(user);
-	}
-
-	public Offer getOffer() {
-		return offer;
-	}
-
-	public void setOffer(Offer offer) {
-		this.offer = offer;
-	}
-	
-	public Reply getAnswer() {
-		return answer;
-	}
-
-	public void setAnswer(Reply answer) {
-		this.answer = answer;
-	}
-
-	public List<Reply> getReplies() {
-		return replies;
-	}
-	
-	public void addReply(Reply reply) {
-		replies.add(reply);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Topic other = (Topic) obj;
-		return Objects.equals(id, other.id);
 	}
 }
