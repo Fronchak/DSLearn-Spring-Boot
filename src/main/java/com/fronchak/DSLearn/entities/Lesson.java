@@ -46,6 +46,9 @@ public abstract class Lesson implements Serializable {
 	
 	@OneToMany(mappedBy = "lesson")
 	private Set<Deliver> deliveries = new HashSet<>();
+	
+	@OneToMany(mappedBy = "lesson")
+	private Set<Topic> topics = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -89,6 +92,14 @@ public abstract class Lesson implements Serializable {
 	
 	public void addDeliver(Deliver deliver) {
 		deliveries.add(deliver);
+	}
+	
+	public Set<Topic> getTopics() {
+		return topics;
+	}
+	
+	public void addTopic(Topic topic) {
+		topics.add(topic);
 	}
 
 	@Override
