@@ -38,3 +38,6 @@ INSERT INTO task(description, question_count, approval_count, weight, due_date, 
 
 INSERT INTO enrollment_lessons_done(id_lesson, id_user, id_offer) VALUES (1, 1, 1);
 INSERT INTO enrollment_lessons_done(id_lesson, id_user, id_offer) VALUES (2, 1, 1);
+
+
+INSERT INTO notification(text, moment, read, route, id_user) VALUES ('Mudança de senha concluída', TIMESTAMP WITH TIME ZONE '2022-11-18T12:00:00-03:00', true, '', 1);

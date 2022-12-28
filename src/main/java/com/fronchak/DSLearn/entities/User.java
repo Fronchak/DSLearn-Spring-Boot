@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -37,6 +38,9 @@ public class User implements Serializable {
 			inverseJoinColumns = @JoinColumn(name = "id_role")
 			)
 	private Set<Role> roles = new HashSet<>();
+	
+	@OneToMany(mappedBy = "user")
+	private Set<Notification> notifications = new HashSet<>();
 	
 	public Long getId() {
 		return id;
@@ -74,6 +78,18 @@ public class User implements Serializable {
 		return roles;
 	}
 	
+	public void addRole(Role role) {
+		roles.add(role);
+	}
+
+	public Set<Notification> getNotifications() {
+		return notifications;
+	}
+
+	public void addNotification(Notification notification) {
+		notifications.add(notification);
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -89,9 +105,5 @@ public class User implements Serializable {
 			return false;
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
-	}
-
-	public void addRole(Role role) {
-		roles.add(role);
 	}
 }
