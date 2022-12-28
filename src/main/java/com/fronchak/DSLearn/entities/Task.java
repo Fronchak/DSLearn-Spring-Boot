@@ -13,7 +13,11 @@ public class Task extends Lesson {
 	private static final long serialVersionUID = 1L;
 	
 	private String description;
+	
+	@Column(name = "question_count")
 	private Integer questionCount;
+	
+	@Column(name = "approval_count")
 	private Integer approvalCount;
 	private Double weight;
 	

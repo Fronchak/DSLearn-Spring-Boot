@@ -1,11 +1,14 @@
 package com.fronchak.DSLearn.entities;
 
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fronchak.DSLearn.entities.pk.EnrollmentPK;
@@ -26,6 +29,9 @@ public class Enrollment {
 	
 	@Column(name = "only_update")
 	private boolean onlyUpdate;
+	
+	@ManyToMany(mappedBy = "enrollmentsDone")
+	private Set<Lesson> lessonsDone = new HashSet<>();
 	
 	public Enrollment( ) {}
 	
@@ -87,6 +93,14 @@ public class Enrollment {
 		this.onlyUpdate = onlyUpdate;
 	}
 
+	public Set<Lesson> getLessonsDone() {
+		return lessonsDone;
+	}
+
+	public void addLessonDone(Lesson lessonDone) {
+		lessonsDone.add(lessonDone);
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -102,5 +116,5 @@ public class Enrollment {
 			return false;
 		Enrollment other = (Enrollment) obj;
 		return Objects.equals(id, other.id);
-	}
+	}	
 }
