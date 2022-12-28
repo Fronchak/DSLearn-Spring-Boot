@@ -1,5 +1,7 @@
 package com.fronchak.DSLearn.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -33,6 +36,9 @@ public class Section {
 	@OneToOne
 	@JoinColumn(name = "id_prerequisite")
 	private Section prerequisite;
+	
+	@OneToMany(mappedBy = "section")
+	private List<Lesson> lessons = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -88,6 +94,14 @@ public class Section {
 
 	public void setPrerequisite(Section prerequisite) {
 		this.prerequisite = prerequisite;
+	}
+	
+	public List<Lesson> getLessons() {
+		return lessons;
+	}
+	
+	public void addLesson(Lesson lesson) {
+		lessons.add(lesson);
 	}
 
 	@Override

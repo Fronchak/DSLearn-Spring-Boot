@@ -23,3 +23,6 @@ INSERT INTO resource(title, description, position, img_uri, type, external_link,
 
 INSERT INTO section(title, description, position, img_uri, id_resource, id_prerequisite) VALUES ('Cap 1', 'Introduction', 1, 'img.jpeg', 1, null);
 INSERT INTO section(title, description, position, img_uri, id_resource, id_prerequisite) VALUES ('Cap 2', 'Exercícios', 2, 'img.jpeg', 1, 1);
+
+INSERT INTO enrollment(id_user, id_offer, enroll_moment, refund_moment, available, only_update) VALUES (1, 1, TIMESTAMP WITH TIME ZONE '2022-11-18T12:00:00-03:00', null, true, false);
+INSERT INTO enrollment(id_user, id_offer, enroll_moment, refund_moment, available, only_update) VALUES (1, 2, TIMESTAMP WITH TIME ZONE '2023-12-10T12:00:00-03:00', null, true, true);
