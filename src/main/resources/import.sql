@@ -41,3 +41,6 @@ INSERT INTO enrollment_lessons_done(id_lesson, id_user, id_offer) VALUES (2, 1, 
 
 
 INSERT INTO notification(text, moment, read, route, id_user) VALUES ('Mudança de senha concluída', TIMESTAMP WITH TIME ZONE '2022-11-18T12:00:00-03:00', true, '', 1);
+INSERT INTO notification(text, moment, read, route, id_user) VALUES ('Atividade Aprovada, nota: 7/8', TIMESTAMP WITH TIME ZONE '2022-12-07T12:00:00-03:00', false, '', 1);
+INSERT INTO notification(text, moment, read, route, id_user) VALUES ('Login realizado com sucesso', TIMESTAMP WITH TIME ZONE '2022-12-07T12:00:00-03:00', false, '', 2);
+INSERT INTO notification(text, moment, read, route, id_user) VALUES ('Atividade postada com sucesso!', TIMESTAMP WITH TIME ZONE '2022-12-07T12:00:00-03:00', false, '', 3);
