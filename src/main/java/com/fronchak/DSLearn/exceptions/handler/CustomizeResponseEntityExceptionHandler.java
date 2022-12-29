@@ -12,7 +12,10 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.fronchak.DSLearn.exceptions.DatabaseException;
 import com.fronchak.DSLearn.exceptions.ExceptionResponse;
+import com.fronchak.DSLearn.exceptions.ForbiddenException;
+import com.fronchak.DSLearn.exceptions.OAuthCustomError;
 import com.fronchak.DSLearn.exceptions.ResourceNotFoundException;
+import com.fronchak.DSLearn.exceptions.UnauthorizedException;
 import com.fronchak.DSLearn.exceptions.ValidationExceptionResponse;
 
 @RestControllerAdvice
@@ -53,6 +56,24 @@ public class CustomizeResponseEntityExceptionHandler {
 		for(FieldError error : e.getBindingResult().getFieldErrors()) {
 			response.addError(error.getField(), error.getDefaultMessage());
 		}
+		return ResponseEntity.status(status).body(response);
+	}
+	
+	@ExceptionHandler(ForbiddenException.class)
+	public ResponseEntity<OAuthCustomError> handleForbiddenException(ForbiddenException e, WebRequest request) {
+		HttpStatus status = HttpStatus.FORBIDDEN;
+		OAuthCustomError response = new OAuthCustomError();
+		response.setError(ForbiddenException.getError());
+		response.setErrorDescription(e.getMessage());
+		return ResponseEntity.status(status).body(response);
+	}
+	
+	@ExceptionHandler(UnauthorizedException.class)
+	public ResponseEntity<OAuthCustomError> handleUnauthorizedException(UnauthorizedException e, WebRequest request) {
+		HttpStatus status = HttpStatus.UNAUTHORIZED;
+		OAuthCustomError response = new OAuthCustomError();
+		response.setError(ForbiddenException.getError());
+		response.setErrorDescription(e.getMessage());
 		return ResponseEntity.status(status).body(response);
 	}
 }

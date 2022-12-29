@@ -143,4 +143,16 @@ public class User implements Serializable, UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+	
+	public boolean hasHole(String roleName) {
+		return roles.stream().anyMatch(role -> role.getAuthority().equals(roleName));
+	}
+	
+	public boolean isAdmin() {
+		return hasHole("ROLE_ADMIN");
+	}
+	
+	public boolean isNotAdmin() {
+		return !isAdmin();
+	}
 }

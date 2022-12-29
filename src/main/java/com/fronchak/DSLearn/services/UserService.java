@@ -26,8 +26,12 @@ public class UserService implements UserDetailsService {
 	@Autowired
 	private UserMapper mapper;
 	
+	@Autowired
+	private AuthService authService;
+	
 	@Transactional(readOnly = true)
 	public UserOutputDTO findById(Long id) {
+		authService.validateSelfOrAdmin(id);
 		User entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("User", id.toString()));
 		return mapper.convertEntityToOutputDTO(entity);
