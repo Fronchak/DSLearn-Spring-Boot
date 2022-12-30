@@ -36,6 +36,8 @@ INSERT INTO content(text_content, video_uri, id) values ('text content 2', 'wwww
 
 INSERT INTO task(description, question_count, approval_count, weight, due_date, id) VALUES ('Tarefa 01', 10, 6, 1.0, TIMESTAMP WITH TIME ZONE '2022-11-18T12:00:00-03:00', 3);
 
+INSERT INTO deliver(uri, moment, status, id_user, id_offer, id_lesson) values ('github/fronchak/lesson1', TIMESTAMP WITH TIME ZONE '2022-11-18T12:00:00-03:00', 0, 1, 1, 3);
+
 INSERT INTO enrollment_lessons_done(id_lesson, id_user, id_offer) VALUES (1, 1, 1);
 INSERT INTO enrollment_lessons_done(id_lesson, id_user, id_offer) VALUES (2, 1, 1);
 
