@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fronchak.DSLearn.dtos.notification.NotificationOutputDTO;
@@ -19,8 +20,10 @@ public class NotificationController {
 	private NotificationService service;
 	
 	@GetMapping
-	public ResponseEntity<Page<NotificationOutputDTO>> getPagedNotifications(Pageable pageable) {
-		Page<NotificationOutputDTO> page = service.getNotificationsForCurrentUser(pageable);
+	public ResponseEntity<Page<NotificationOutputDTO>> getPagedNotifications(
+			@RequestParam(name = "unreadOnly", defaultValue = "false") Boolean unreadOnly, 
+			Pageable pageable) {
+		Page<NotificationOutputDTO> page = service.getNotificationsForCurrentUser(unreadOnly, pageable);
 		return ResponseEntity.ok().body(page);
 	}
 }

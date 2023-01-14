@@ -46,3 +46,8 @@ INSERT INTO notification(text, moment, read, route, id_user) VALUES ('Mudança d
 INSERT INTO notification(text, moment, read, route, id_user) VALUES ('Atividade Aprovada, nota: 7/8', TIMESTAMP WITH TIME ZONE '2022-12-07T12:00:00-03:00', false, '', 1);
 INSERT INTO notification(text, moment, read, route, id_user) VALUES ('Login realizado com sucesso', TIMESTAMP WITH TIME ZONE '2022-12-07T12:00:00-03:00', false, '', 2);
 INSERT INTO notification(text, moment, read, route, id_user) VALUES ('Atividade postada com sucesso!', TIMESTAMP WITH TIME ZONE '2022-12-07T12:00:00-03:00', false, '', 3);
+INSERT INTO notification(text, moment, read, route, id_user) VALUES ('Atividade Aprovada 1, nota: 7/8', TIMESTAMP WITH TIME ZONE '2022-12-07T12:00:00-03:00', false, '', 1);
+INSERT INTO notification(text, moment, read, route, id_user) VALUES ('Atividade Aprovada 2, nota: 7/8', TIMESTAMP WITH TIME ZONE '2022-12-07T12:00:00-03:00', false, '', 1);
+INSERT INTO notification(text, moment, read, route, id_user) VALUES ('Atividade Aprovada 3, nota: 7/8', TIMESTAMP WITH TIME ZONE '2022-12-07T12:00:00-03:00', false, '', 1);
+INSERT INTO notification(text, moment, read, route, id_user) VALUES ('Atividade Aprovada 4, nota: 7/8', TIMESTAMP WITH TIME ZONE '2022-12-07T12:00:00-03:00', true, '', 1);
+INSERT INTO notification(text, moment, read, route, id_user) VALUES ('Atividade Aprovada 5, nota: 7/8', TIMESTAMP WITH TIME ZONE '2022-12-07T12:00:00-03:00', true, '', 1);
